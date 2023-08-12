@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div align="center">
+      <form action="{% url 'salvar' %}" method="post">
+        {% csrf_token %} Tarefa <input type="text" name="tarefa" /> dia
+        <input type="date" name="dia" />
+        <button type="submit">salvar</button><br><br>
+      </form>
+      <table border="1">
+      <tr>
+      <td>Tarefa</td>
+      <td>Data</td>
+      </tr>
+      {% for tarefa in tarefas %}
+      <tr>
+        <td>
+          {{tarefa.tarefa}} </td> 
+          <td>{{tarefa.dia}}
+          <a href="{% url 'excluir' tarefa.id %}">excluir</a> 
+        </td>
+      </tr>
+    
+      {% endfor %}
+    </table>
+    </div>
+  </body>
+</html>
